@@ -1,18 +1,14 @@
 '''
 MIT License
-
 Copyright (c) 2017 Kyb3r
-
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
 in the Software without restriction, including without limitation the rights
 to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 copies of the Software, and to permit persons to whom the Software is
 furnished to do so, subject to the following conditions:
-
 The above copyright notice and this permission notice shall be included in all
 copies or substantial portions of the Software.
-
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -128,6 +124,7 @@ class Modmail(commands.Bot):
         Client is ready!
         ---------------
         Author: Kyb3r#7220
+        Customized by Kido#7500
         ---------------
         Logged in as: {self.user}
         User ID: {self.user.id}
@@ -150,9 +147,9 @@ class Modmail(commands.Bot):
 
     def help_embed(self, prefix):
         em = discord.Embed(color=0x00FFFF)
-        em.set_author(name='Mod Mail - Help', icon_url=self.user.avatar_url)
+        em.set_author(name='Mod Mail - Help | Customized By Kidodeptrai From FCTTG with Love ==!', icon_url=self.user.avatar_url)
         em.description = 'This bot is a python implementation of a stateless "Mod Mail" bot. ' \
-                         'Made by Kyb3r and improved by the suggestions of others. This bot ' \
+                         'Made by Kyb3r and customized by Kido#7500. This bot ' \
                          'saves no data and utilises channel topics for storage and syncing.' 
                  
 
@@ -219,7 +216,7 @@ class Modmail(commands.Bot):
         user_id = int(ctx.channel.topic.split(': ')[1])
         user = self.get_user(user_id)
         em = discord.Embed(title='Thread Closed')
-        em.description = f'**{ctx.author}** has closed this modmail session.'
+        em.description = f'Staff has closed this modmail session'
         em.color = discord.Color.red()
         try:
             await user.send(embed=em)
@@ -295,9 +292,9 @@ class Modmail(commands.Bot):
                 break
 
         if mod:
-            fmt.color=discord.Color.green()
-            fmt.set_author(name=str(author), icon_url=author.avatar_url)
-            fmt.set_footer(text='Moderator')
+            fmt.color=discord.Color.red()
+            fmt.set_author(text='Staff', icon_url='https://scontent.fdad1-1.fna.fbcdn.net/v/t1.0-9/31960844_226877781401396_26209191815282688_n.jpg?_nc_cat=0&oh=37c5f76515834090e47d97a6139f3548&oe=5BD7F7A9')
+            fmt.set_footer(text='Staff Support', icon_url=user.avatar_url)
         else:
             fmt.color=discord.Color.gold()
             fmt.set_author(name=str(author), icon_url=author.avatar_url)

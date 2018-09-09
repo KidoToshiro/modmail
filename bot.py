@@ -293,7 +293,7 @@ class Modmail(commands.Bot):
 
         if mod:
             fmt.color=discord.Color.red()
-            fmt.set_footer(text='Staff Support', icon_url='https://scontent.fdad1-1.fna.fbcdn.net/v/t1.0-9/31960844_226877781401396_26209191815282688_n.jpg?_nc_cat=0&oh=37c5f76515834090e47d97a6139f3548&oe=5BD7F7A9')
+            fmt.set_footer(text='Staff', icon_url='https://scontent.fdad1-1.fna.fbcdn.net/v/t1.0-9/31960844_226877781401396_26209191815282688_n.jpg?_nc_cat=0&oh=37c5f76515834090e47d97a6139f3548&oe=5BD7F7A9')
         else:
             fmt.color=discord.Color.gold()
             fmt.set_author(name=str(author), icon_url=author.avatar_url)

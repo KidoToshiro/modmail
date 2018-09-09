@@ -105,7 +105,7 @@ class Modmail(commands.Bot):
     async def on_connect(self):
         print('---------------')
         print('Modmail connected!')
-        status = Hãy Chat Với Tôi Nếu Bạn Cần Sự Trợ Giúp!
+        status = 'Hãy Chat Với Tôi Nếu Bạn Cần Sự Trợ Giúp!'
         if status:
             print(f'Setting Status to {status}')
         else:

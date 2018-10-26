@@ -102,14 +102,14 @@ class Modmail(commands.Bot):
         else:
             to_use = bot.token.strip('"')
         try:
-            bot.run(to_use, activity=discord.Game(name='Hãy Chat với tôi nếu bạn cần sự trợ giúp!'), reconnect=True)
+            bot.run(to_use, activity=discord.Game(os.getenv('STATUS')), reconnect=True)
         except Exception as e:
             raise e
 
     async def on_connect(self):
         print('---------------')
         print('Modmail connected!')
-        status = f'Hãy Chat với tôi nếu bạn cần sự trợ giúp!'
+        status = os.getenv('STATUS')
         if status:
             print(f'Setting Status to {status}')
         else:

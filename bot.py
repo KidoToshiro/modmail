@@ -102,14 +102,14 @@ class Modmail(commands.Bot):
         else:
             to_use = bot.token.strip('"')
         try:
-            bot.run(to_use, activity=discord.Game(os.getenv('STATUS')), reconnect=True)
+            bot.run(to_use, activity=discord.Game(name='Hãy Chat với tôi nếu bạn cần sự trợ giúp!'), reconnect=True)
         except Exception as e:
             raise e
 
     async def on_connect(self):
         print('---------------')
         print('Modmail connected!')
-        status = os.getenv('STATUS')
+        status = "Hãy Chat với tôi nếu bạn cần sự trợ giúp!"
         if status:
             print(f'Setting Status to {status}')
         else:
@@ -155,8 +155,8 @@ class Modmail(commands.Bot):
         em = discord.Embed(color=0x00FFFF)
         em.set_author(name='Mod Mail - Help', icon_url=self.user.avatar_url)
         em.description = 'This bot is a python implementation of a stateless "Mod Mail" bot. ' \
-                         'Made by Kyb3r and improved by the suggestions of others. This bot ' \
-                         'saves no data and utilises channel topics for storage and syncing.' 
+                         'Made by Kido#7500 from FanClub Truc Tiep Game with Love ' \
+                         'Have fun ~.^' 
                  
 
         cmds = f'`{prefix}setup [modrole] <- (optional)` - Command that sets up the bot.\n' \
@@ -171,7 +171,7 @@ class Modmail(commands.Bot):
                'Modifying the channel topic will also break the system.'
         em.add_field(name='Commands', value=cmds)
         em.add_field(name='Warning', value=warn)
-        em.add_field(name='Github', value='https://github.com/verixx/modmail')
+        em.add_field(name='Facebook', value='https://www.facebook.com/100007776191181')
         em.set_footer(text='Star the repository to unlock hidden features!')
 
         return em
@@ -207,7 +207,7 @@ class Modmail(commands.Bot):
                     if 'User ID:' in str(chan.topic):
                         user_id = int(chan.topic.split(': ')[1])
                         user = self.get_user(user_id)
-                        await user.send(f'**{ctx.author}** has closed this modmail session.')
+                        await user.send(f'Cuộc trò chuyện đã kết thúc. Cảm ơn đã sử dụng dịch vụ của chúng tôi!')
                     await chan.delete()
         await categ.delete()
         await ctx.send('Disabled modmail.')
@@ -221,8 +221,8 @@ class Modmail(commands.Bot):
             return await ctx.send('This is not a modmail thread.')
         user_id = int(ctx.channel.topic.split(': ')[1])
         user = self.get_user(user_id)
-        em = discord.Embed(title='Thread Closed')
-        em.description = f'**{ctx.author}** has closed this modmail session.'
+        em = discord.Embed(title='Thread đã được đóng')
+        em.description = f'Cuộc trò chuyện đã kết thúc. Cảm ơn đã sử dụng dịch vụ của chúng tôi!'
         em.color = discord.Color.red()
         try:
             await user.send(embed=em)
@@ -298,9 +298,9 @@ class Modmail(commands.Bot):
                 break
 
         if mod:
-            fmt.color=discord.Color.green()
-            fmt.set_author(name=str(author), icon_url=author.avatar_url)
-            fmt.set_footer(text='Moderator')
+            fmt.color=discord.Color.red()
+            fmt.set_author(name='Mod Mail Bot - made by Kido from FanClub Truc Tiep Game, Have Fun!!!'), icon_url='https://scontent.fdad3-1.fna.fbcdn.net/v/t1.0-9/44884397_2197932910475894_6199669061371035648_n.jpg?_nc_cat=108&_nc_ht=scontent.fdad3-1.fna&oh=bb0d96d66f77e82536993c30baa1fd17&oe=5C4B6A40')
+            fmt.set_footer(text='Staff')
         else:
             fmt.color=discord.Color.gold()
             fmt.set_author(name=str(author), icon_url=author.avatar_url)
@@ -359,8 +359,8 @@ class Modmail(commands.Bot):
         if str(message.author.id) in blocked:
             return await message.author.send(embed=self.blocked_em)
 
-        em = discord.Embed(title='Thanks for the message!')
-        em.description = 'The moderation team will get back to you as soon as possible!'
+        em = discord.Embed(title='Thank You')
+        em.description = 'Nhân viên Mod Mail của chúng tôi sẽ phản hồi lại trong thời gian sớm nhất!'
         em.color = discord.Color.green()
 
         if channel is not None:

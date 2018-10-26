@@ -89,7 +89,7 @@ class Modmail(commands.Bot):
         print('------------------------------------------')
         os.execv(sys.executable, ['python'] + sys.argv)
 
-     @classmethod
+    @classmethod
     def init(cls, token=None):
         '''Starts the actual bot'''
         bot = cls()

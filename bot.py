@@ -299,7 +299,7 @@ class Modmail(commands.Bot):
 
         if mod:
             fmt.color=discord.Color.red()
-            fmt.set_author(name='Mod Mail Bot - made by Kido from FanClub Truc Tiep Game, Have Fun!!!'), icon_url='https://scontent.fdad3-1.fna.fbcdn.net/v/t1.0-9/44884397_2197932910475894_6199669061371035648_n.jpg?_nc_cat=108&_nc_ht=scontent.fdad3-1.fna&oh=bb0d96d66f77e82536993c30baa1fd17&oe=5C4B6A40')
+            fmt.set_author(name='Mod Mail Bot - made by Kido from FanClub Truc Tiep Game, Have Fun!!!', icon_url='https://scontent.fdad3-1.fna.fbcdn.net/v/t1.0-9/44884397_2197932910475894_6199669061371035648_n.jpg?_nc_cat=108&_nc_ht=scontent.fdad3-1.fna&oh=bb0d96d66f77e82536993c30baa1fd17&oe=5C4B6A40')
             fmt.set_footer(text='Staff')
         else:
             fmt.color=discord.Color.gold()

@@ -109,7 +109,7 @@ class Modmail(commands.Bot):
     async def on_connect(self):
         print('---------------')
         print('Modmail connected!')
-        status = "Hãy Chat với tôi nếu bạn cần sự trợ giúp!"
+        status = f'Hãy Chat với tôi nếu bạn cần sự trợ giúp!'
         if status:
             print(f'Setting Status to {status}')
         else:
@@ -154,8 +154,7 @@ class Modmail(commands.Bot):
     def help_embed(self, prefix):
         em = discord.Embed(color=0x00FFFF)
         em.set_author(name='Mod Mail - Help', icon_url=self.user.avatar_url)
-        em.description = 'This bot is a python implementation of a stateless "Mod Mail" bot. ' \
-                         'Made by Kido#7500 from FanClub Truc Tiep Game with Love ' \
+        em.description = 'Made by Kido#7500 from FanClub Truc Tiep Game with Love. \n' \
                          'Have fun ~.^' 
                  
 
@@ -166,13 +165,10 @@ class Modmail(commands.Bot):
                f'`{prefix}customstatus` - Sets the Bot status to whatever you want.' \
                f'`{prefix}block` - Blocks a user from using modmail!' \
                f'`{prefix}unblock` - Unblocks a user from using modmail!'
-
-        warn = 'Do not manually delete the category or channels as it will break the system. ' \
-               'Modifying the channel topic will also break the system.'
+        
         em.add_field(name='Commands', value=cmds)
-        em.add_field(name='Warning', value=warn)
-        em.add_field(name='Facebook', value='https://www.facebook.com/100007776191181')
-        em.set_footer(text='Star the repository to unlock hidden features!')
+        em.add_field(name='Facebook Kido', value='https://www.facebook.com/100007776191181')
+        em.set_footer(text='Sep Dung iz the bezt!')
 
         return em
 
@@ -299,7 +295,7 @@ class Modmail(commands.Bot):
 
         if mod:
             fmt.color=discord.Color.red()
-            fmt.set_author(name='Mod Mail Bot - made by Kido from FanClub Truc Tiep Game, Have Fun!!!', icon_url='https://scontent.fdad3-1.fna.fbcdn.net/v/t1.0-9/44884397_2197932910475894_6199669061371035648_n.jpg?_nc_cat=108&_nc_ht=scontent.fdad3-1.fna&oh=bb0d96d66f77e82536993c30baa1fd17&oe=5C4B6A40')
+            fmt.set_author(name='Mod Mail Bot - Made by Kido', icon_url='https://scontent.fdad3-1.fna.fbcdn.net/v/t1.0-9/44884397_2197932910475894_6199669061371035648_n.jpg?_nc_cat=108&_nc_ht=scontent.fdad3-1.fna&oh=bb0d96d66f77e82536993c30baa1fd17&oe=5C4B6A40')
             fmt.set_footer(text='Staff')
         else:
             fmt.color=discord.Color.gold()
@@ -360,7 +356,7 @@ class Modmail(commands.Bot):
             return await message.author.send(embed=self.blocked_em)
 
         em = discord.Embed(title='Thank You')
-        em.description = 'Nhân viên Mod Mail của chúng tôi sẽ phản hồi lại trong thời gian sớm nhất!'
+        em.description = 'Mod của chúng tôi sẽ phản hồi lại trong thời gian sớm nhất!'
         em.color = discord.Color.green()
 
         if channel is not None:

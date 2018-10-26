@@ -89,7 +89,7 @@ class Modmail(commands.Bot):
         print('------------------------------------------')
         os.execv(sys.executable, ['python'] + sys.argv)
 
-    @classmethod
+     @classmethod
     def init(cls, token=None):
         '''Starts the actual bot'''
         bot = cls()
@@ -98,13 +98,18 @@ class Modmail(commands.Bot):
         else:
             to_use = bot.token.strip('"')
         try:
-            bot.run(to_use, activity=discord.Game(os.getenv('STATUS')), reconnect=True)
+            bot.run(to_use, activity=discord.Game(name='Hãy chat với tôi nếu bạn cần sự trợ giúp!')
         except Exception as e:
             raise e
-            
-    @client.event
-    async def wait_until_login():
-    await client.change_presence(game=discord.Game(name='Hãy chat với tôi nếu bạn cần sự trợ giúp :mailbox:'))
+
+    async def on_connect(self):
+        print('---------------')
+        print('Modmail connected!')
+        status = os.getenv('STATUS')
+        if status:
+            print(f'Setting Status to {status}')
+        else:
+            print('No status set.')
     @property
     def guild_id(self):
         from_heroku = os.environ.get('GUILD_ID')

@@ -99,8 +99,6 @@ class Modmail(commands.Bot):
             to_use = bot.token.strip('"')
         try:
             bot.run(to_use, activity=discord.Game(name='Hãy chat với tôi nếu bạn cần sự trợ giúp!')
-        except Exception as e:
-            raise e
 
     async def on_connect(self):
         print('---------------')

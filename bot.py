@@ -97,20 +97,12 @@ class Modmail(commands.Bot):
             to_use = token.strip('"')
         else:
             to_use = bot.token.strip('"')
-        try:
-            bot.run(to_use, activity=discord.Game(os.getenv('Hãy Chat Với Tôi Nếu Bạn Cần Sự Trợ Giúp!')), reconnect=True)
         except Exception as e:
             raise e
-
-    async def on_connect(self):
-        print('---------------')
-        print('Modmail connected!')
-        status = 'Hãy Chat Với Tôi Nếu Bạn Cần Sự Trợ Giúp!'
-        if status:
-            print(f'Setting Status to {status}')
-        else:
-            print('No status set.')
-
+            
+    @client.event
+    async def wait_until_login():
+    await client.change_presence(game=discord.Game(name='Hãy chat với tôi nếu bạn cần sự trợ giúp :mailbox:'))
     @property
     def guild_id(self):
         from_heroku = os.environ.get('GUILD_ID')
@@ -147,26 +139,25 @@ class Modmail(commands.Bot):
 
     def help_embed(self, prefix):
         em = discord.Embed(color=0x00FFFF)
-        em.set_author(name='Mod Mail - Help | Customized By Kidodeptrai From FCTTG with Love ==!', icon_url=self.user.avatar_url)
-        em.description = 'This bot is a python implementation of a stateless "Mod Mail" bot. ' \
-                         'Made by Kyb3r and customized by Kido#7500. This bot ' \
+        em.set_author(name='Mod Mail - Help ', icon_url=self.user.avatar_url)
+        em.description = 'Made by Kido#7500. This bot ' \
                          'saves no data and utilises channel topics for storage and syncing.' 
                  
 
-        cmds = f'`{prefix}setup [modrole] <- (optional)` - Command that sets up the bot.\n' \
-               f'`{prefix}reply <message...>` - Sends a message to the current thread\'s recipient.\n' \
-               f'`{prefix}close` - Closes the current thread and deletes the channel.\n' \
-               f'`{prefix}disable` - Closes all threads and disables modmail for the server.\n' \
-               f'`{prefix}customstatus` - Sets the Bot status to whatever you want.' \
-               f'`{prefix}block` - Blocks a user from using modmail!' \
-               f'`{prefix}unblock` - Unblocks a user from using modmail!'
+        cmds = f'`{prefix}setup [modrole] <- (optional)` - Lenh nay dung de setup Modmail cho server.\n' \
+               f'`{prefix}reply <message...>` - Tra loi thread\'s recipient.\n' \
+               f'`{prefix}close` - Dong thread va xoa channel.\n' \
+               f'`{prefix}disable` - Disable Modmail.\n' \
+               f'`{prefix}customstatus` - Tuy chinh game cho bot (VD: Playing Grand Theft Auto V.' \
+               f'`{prefix}block` - Chan nguoi dung khoi Modmail!' \
+               f'`{prefix}unblock` - Bo chan nguoi dung khoi Modmail!'
 
         warn = 'Do not manually delete the category or channels as it will break the system. ' \
                'Modifying the channel topic will also break the system.'
         em.add_field(name='Commands', value=cmds)
         em.add_field(name='Warning', value=warn)
-        em.add_field(name='Github', value='https://github.com/verixx/modmail')
-        em.set_footer(text='Star the repository to unlock hidden features!')
+        em.add_field(name='Facebook', value='https://www.facebook.com/100007776191181')
+        em.set_footer(text='Created by Kido#7500 from FanClub Truc Tiep Game with Love!')
 
         return em
 
@@ -191,7 +182,7 @@ class Modmail(commands.Bot):
     @commands.command()
     @commands.has_permissions(administrator=True)
     async def disable(self, ctx):
-        '''Close all threads and disable modmail.'''
+        '''Da xoa thread va disable Modmail.'''
         categ = discord.utils.get(ctx.guild.categories, name='Mod Mail')
         if not categ:
             return await ctx.send('This server is not set up.')
@@ -210,13 +201,13 @@ class Modmail(commands.Bot):
     @commands.command(name='close')
     @commands.has_permissions(manage_channels=True)
     async def _close(self, ctx):
-        '''Close the current thread.'''
+        '''Dong thread va xoa channel.'''
         if 'User ID:' not in str(ctx.channel.topic):
             return await ctx.send('This is not a modmail thread.')
         user_id = int(ctx.channel.topic.split(': ')[1])
         user = self.get_user(user_id)
         em = discord.Embed(title='Thread Closed')
-        em.description = f'Staff has closed this modmail session'
+        em.description = f'Các Mod của chúng tôi đã đóng Thread này. Cảm ơn đã sử dụng Mod Mail!'
         em.color = discord.Color.red()
         try:
             await user.send(embed=em)
@@ -352,8 +343,9 @@ class Modmail(commands.Bot):
         if str(message.author.id) in blocked:
             return await message.author.send(embed=self.blocked_em)
 
-        em = discord.Embed(title='Thanks for the message!')
-        em.description = 'The moderation team will get back to you as soon as possible!'
+        em = discord.Embed(title='Cảm ơn vì đã sử dụng Mod Mail!')
+        em.description = 'Đội ngũ Staff của chúng tôi sẽ hỗ trợ bạn một cách nhanh nhất có thể!'
+        em.set_footer(text='Created by Kido from FanCLub Truc Tiep Game with Love!')
         em.color = discord.Color.green()
 
         if channel is not None:
@@ -376,7 +368,7 @@ class Modmail(commands.Bot):
 
     @commands.command()
     async def reply(self, ctx, *, msg):
-        '''Reply to users using this command.'''
+        '''Trả lời người dùng bằng lệnh này.'''
         categ = discord.utils.get(ctx.guild.categories, id=ctx.channel.category_id)
         if categ is not None:
             if categ.name == 'Mod Mail':
@@ -384,14 +376,6 @@ class Modmail(commands.Bot):
                     ctx.message.content = msg
                     await self.process_reply(ctx.message)
 
-    @commands.command(name="customstatus", aliases=['status', 'presence'])
-    @commands.has_permissions(administrator=True)
-    async def _status(self, ctx, *, message):
-        '''Set a custom playing status for the bot.'''
-        if message == 'clear':
-            return await self.change_presence(activity=None)
-        await self.change_presence(activity=discord.Game(message))
-        await ctx.send(f"Changed status to **{message}**")
 
     @commands.command()
     @commands.has_permissions(manage_channels=True)

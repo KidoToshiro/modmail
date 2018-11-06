@@ -294,8 +294,8 @@ class Modmail(commands.Bot):
                 break
 
         if mod:
-            fmt.color=discord.Color.red()
-            fmt.set_author(name='Mod Mail Bot - Made by Kido', icon_url='https://scontent.fdad3-1.fna.fbcdn.net/v/t1.0-9/44884397_2197932910475894_6199669061371035648_n.jpg?_nc_cat=108&_nc_ht=scontent.fdad3-1.fna&oh=bb0d96d66f77e82536993c30baa1fd17&oe=5C4B6A40')
+            fmt.color=discord.Color.blue()
+            fmt.set_author(name='Mod Mail BOT', icon_url='https://scontent.fdad3-1.fna.fbcdn.net/v/t1.0-9/44884397_2197932910475894_6199669061371035648_n.jpg?_nc_cat=108&_nc_ht=scontent.fdad3-1.fna&oh=bb0d96d66f77e82536993c30baa1fd17&oe=5C4B6A40')
             fmt.set_footer(text='Staff')
         else:
             fmt.color=discord.Color.gold()
@@ -355,8 +355,8 @@ class Modmail(commands.Bot):
         if str(message.author.id) in blocked:
             return await message.author.send(embed=self.blocked_em)
 
-        em = discord.Embed(title='Thank You')
-        em.description = 'Mod của chúng tôi sẽ phản hồi lại trong thời gian sớm nhất!'
+        em = discord.Embed(title='Thank You!')
+        em.description = 'Mod của chúng tôi sẽ phản hồi lại trong thời gian sớm nhất.'
         em.color = discord.Color.green()
 
         if channel is not None:

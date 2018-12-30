@@ -70,13 +70,6 @@ class Modmail(commands.Bot):
             token = None
         return os.environ.get('TOKEN') or token
     
-    Client = discord.client
-    Clientdiscord = discord.Client()
-    
-    @client.event
-    async def on_ready():
-        await client.change_presence(game=discord.Game(name='Message me for help!', type = 2))
-    
     @staticmethod
     async def get_pre(bot, message):
         '''Returns the prefix.'''
@@ -143,6 +136,7 @@ class Modmail(commands.Bot):
         User ID: {self.user.id}
         ---------------
         '''))
+        await self.change_presence(game=discord.Game(name="Memes", type = 3))
 
     def overwrites(self, ctx, modrole=None):
         '''Permision overwrites for the guild.'''

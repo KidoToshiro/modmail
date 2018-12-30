@@ -75,7 +75,7 @@ class Modmail(commands.Bot):
     
     @client.event
     async def on_ready():
-    await client.change_presence(game=discord.Game(name='Message me for help!', type = 2))
+        await client.change_presence(game=discord.Game(name='Message me for help!', type = 2))
     
     @staticmethod
     async def get_pre(bot, message):

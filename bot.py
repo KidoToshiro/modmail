@@ -70,6 +70,13 @@ class Modmail(commands.Bot):
             token = None
         return os.environ.get('TOKEN') or token
     
+    Client = discord.client
+    Clientdiscord = discord.Client()
+    
+    @client.event
+    async def on_ready():
+    await client.change_presence(game=discord.Game(name='Message me for help!', type = 2))
+    
     @staticmethod
     async def get_pre(bot, message):
         '''Returns the prefix.'''
